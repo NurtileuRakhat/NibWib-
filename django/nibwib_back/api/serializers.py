@@ -1,13 +1,14 @@
 from rest_framework import serializers
 from .models import Category, Product, Order, Review
 
-class CategorySerializer(serializers.Serializer):
+class CategorySerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(max_length=100)
+    name = serializers.CharField(max_length=100)
 
-    def create(self, validated_data):
-        return Category.objects.create(**validated_data)
-    
+    class Meta:
+        model = Category  # Указываем модель, с которой работает сериализатор
+        fields = ['id', 'name']  # Указываем поля, которые должны быть сериализованы
+
 class ProductSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(max_length=100)
@@ -25,6 +26,9 @@ class ProductSerializer(serializers.Serializer):
         instance.category = validated_data.get('category', instance.category)
         instance.save()
         return instance
+    class Meta:
+        model = Category  # Указываем модель, с которой работает сериализатор
+        fields = ['id', 'name']  # Указываем поля, которые должны быть сериализованы
     
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:

@@ -33,7 +33,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-    # Решение конфликта имен для полей groups и user_permissions
     groups = models.ManyToManyField(Group, verbose_name='groups', blank=True, related_name='custom_user_set')
     user_permissions = models.ManyToManyField(Permission, verbose_name='user permissions', blank=True, related_name='custom_user_set')
 
@@ -43,7 +42,6 @@ class ProductManager(models.Manager):
 
 
 class Category(models.Model):
-    id = models
     name = models.CharField(max_length=100)
     
     class Meta:
@@ -75,7 +73,7 @@ class Product(models.Model):
             'name': self.name,
             'description': self.description,
             'price': self.price,
-            'company': self.category.name
+            'category': self.category.name
         }
     
 class Order(models.Model):
