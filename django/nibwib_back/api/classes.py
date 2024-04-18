@@ -9,9 +9,13 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication  # noqa
 
 class CustomJSONWebTokenAuthentication(JSONWebTokenAuthentication):
     def authenticate(self, request):
+        print("Request received:", request)
         tuple_response = super(CustomJSONWebTokenAuthentication, self).authenticate(request)
+        print("Tuple response:", tuple_response)
         return tuple_response
 
     def authenticate_credentials(self, payload):
+        print("Payload received:", payload)
         user = super(CustomJSONWebTokenAuthentication, self).authenticate_credentials(payload)
+        print("User:", user)
         return user

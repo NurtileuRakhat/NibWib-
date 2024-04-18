@@ -1,0 +1,17 @@
+<div *ngIf="loading">Loading...</div>
+
+<div *ngIf="!loading && category">
+  <h1>{{ category.name }}</h1>
+  <div>
+    <h2>Products in this category:</h2>
+    <ul>
+      <li *ngFor="let product of products">
+        {{ product.name }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="!loading && !category">
+  <p>Category not found.</p>
+</div>

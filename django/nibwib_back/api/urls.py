@@ -1,9 +1,13 @@
 from django.urls import path
 from .views import *
-from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
-    path('login/', obtain_jwt_token),
+    path('login/',  TokenObtainPairView.as_view()),
+    path('login/refresh/', TokenRefreshView.as_view()),
     path('categories/', CategoryList.as_view()),
     path('categories/<int:category_id>', get_category),
     path('categories/products/',  ProductList.as_view()),

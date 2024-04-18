@@ -1,7 +1,5 @@
-<div>123</div>
 <div class="wrapper">
-    <div *ngFor="let category of categories">
-        123
-        {{ category.name }}
+    <div *ngFor="let category of categories" [routerLink]="['/categories', category.id]">
+        {{ category.name }} 
     </div>
 </div>

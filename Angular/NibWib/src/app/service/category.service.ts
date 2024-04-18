@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthToken } from '../models/authToken';
 import { ICategory } from '../models/category';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -19,11 +18,11 @@ export class CategoryService {
     }
 
     getCategories(): Observable<ICategory[]> {
-        return this.http.get<ICategory[]>(`${this.URL}/categories`);
+        return this.http.get<ICategory[]>(`${this.URL}/categories/`);
     }
 
-    getCategory(category_id: number): Observable<ICategory[]>{
-        return this.http.get<ICategory[]>(`${this.URL}/categories/${category_id}`);
+    getCategory(category_id: number): Observable<ICategory>{
+        return this.http.get<ICategory>(`${this.URL}/categories/${category_id}/`);
     }
-
 }
+
