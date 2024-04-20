@@ -1,4 +1,3 @@
-from django.http import Http404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated, SAFE_METHODS, BasePermission
@@ -40,33 +39,27 @@ class ProductList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-class CategoryDetailAPIView(APIView):
-    permission_classes = [IsAuthenticated|ReadOnly]
-
-    def get_object(category_id):
-        try:
-            return Category.objects.get(id=category_id)
-        except Category.DoesNotExist:
-            raise Http404
-    
-    def get(self, request, category_id):
-        company = self.get_object(category_id)
-        serializer = CategorySerializer(company)
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated|ReadOnly])
+def get_category(request, category_id):
+    try:
+        category = Category.objects.get(id=category_id)
+    except Category.DoesNotExist as error:
+        return Response({'message': str(error)}, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'GET':
+        serializer = CategorySerializer(category)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def put(self, request, category_id):
-        company = self.get_object(category_id)
-        serializer = CategorySerializer(instance=company, data=request.data)
+    elif request.method == 'PUT':
+        serializer = CategorySerializer(instance=category, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        category.delete()
+        return Response({'message': 'successfully deleted'}, status=status.HTTP_204_NO_CONTENT)
 
-    def delete(self, request, category_id):
-        company = self.get_object(category_id)
-        company.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
 class Category_products(APIView):
     permission_classes = [IsAuthenticated|ReadOnly]
 
