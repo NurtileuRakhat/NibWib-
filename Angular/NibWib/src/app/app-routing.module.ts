@@ -9,8 +9,8 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
   { path: '', component:  HomeComponent},
   { path: 'categories', component: CategoriesListComponent },
-  { path: 'categories/:categoryId', component: CategoryComponent },
-  { path: 'products/:productId', component: ProductComponent },
+  { path: 'categories/:id', component: CategoryComponent },
+  { path: 'products/:id', component: ProductComponent },
   { path: 'products', component: ProductsListComponent },
 ];
 

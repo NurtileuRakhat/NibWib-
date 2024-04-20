@@ -1,11 +1,14 @@
 from django.contrib import admin
-from . import models
-
+from .models import *
 # Register your models here.
-@admin.register(models.Category)
+@admin.register(Category)
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ['id', 'name']
 
-@admin.register(models.Product)
+@admin.register(Product)
 class VacancyAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'description', 'price', 'category']
+
+admin.site.register(Cart)
+admin.site.register(User)
+admin.site.register(Wishlist)

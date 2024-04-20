@@ -23,10 +23,10 @@ export class CategoryService {
     }
 
     getCategory(category_id: number): Observable<ICategory>{
-        return this.http.get<ICategory>(`${this.URL}/categories/${category_id}/`);
+        return this.http.get<ICategory>(`${this.URL}/categories/${category_id}`);
     }
 
     getCategoryProducts(category_id: number): Observable<IProduct[]> {
-        return this.http.get<IProduct[]>(`${this.URL}/categories/${category_id}/products/`)
+        return this.http.get<IProduct[]>(`${this.URL}/categories/${category_id}/products`)
     }
 }

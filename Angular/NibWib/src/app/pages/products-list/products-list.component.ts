@@ -9,9 +9,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: './products-list.component.css'
 })
 export class ProductsListComponent {
+  newProduct: IProduct;
   products: IProduct[] = [];
 
   constructor(private productService: ProductService) {
+    this.newProduct = {} as IProduct;
   }
 
   ngOnInit() {
