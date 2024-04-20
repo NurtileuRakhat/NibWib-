@@ -1,0 +1,8 @@
+<div>
+    <h1>{{product.name}}</h1>
+    <h1>Description:</h1>
+    <h2>{{product.description}}</h2>
+    <h1>price: {{product.price}}</h1>
+    <a [routerLink]="['/categories', product.category.id]">{{product.category.name}}</a>
+  </div>
+  

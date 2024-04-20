@@ -7,18 +7,15 @@ import { IProduct } from '../models/product';
   providedIn: 'root',
 })
 export class ProductService {
-  private URL = 'http://127.0.0.1:8000/api';
+  private URL = 'http://127.0.0.1:8000';
   constructor(private http: HttpClient) {}
 
   getProduct(product_id: number): Observable<IProduct> {
-    return this.http.get<IProduct>(`${this.URL}/categories/products/${product_id}/`);
+    return this.http.get<IProduct>(`${this.URL}api/products/${product_id}/`);
   }
 
   getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`${this.URL}/categories/products/`);
+    return this.http.get<IProduct[]>(`${this.URL}api/products/`);
   }
 
-  getProductsByCategoryId(category_id: number): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(`${this.URL}/categories/${category_id}/products`);
-  }
 }

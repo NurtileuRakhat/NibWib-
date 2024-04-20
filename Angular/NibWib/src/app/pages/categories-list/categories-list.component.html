@@ -1,5 +1,8 @@
-<div class="wrapper">
-    <div *ngFor="let category of categories" [routerLink]="['/categories', category.id]">
-        {{ category.name }} 
-    </div>
-</div>
+<h1>categories:</h1>
+<ul>
+  <li *ngFor="let category of categories">
+    <a [routerLink]="['/categories', category.id]">{{ category.name }} 
+    </a>
+  </li>
+</ul>
+

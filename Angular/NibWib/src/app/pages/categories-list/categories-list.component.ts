@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICategory } from '../../models/category';
 import { CategoryService } from '../../service/category.service';
+import { RouterModule } from '@angular/router'; 
 
 @Component({
   selector: 'app-categories-list',
@@ -8,16 +9,18 @@ import { CategoryService } from '../../service/category.service';
   styleUrls: ['./categories-list.component.css'] 
 })
 export class CategoriesListComponent implements OnInit {
-  categories: ICategory[] = [];
   loading = false;
 
-  constructor(private categoryService: CategoryService) {}
+  newCategory: ICategory;
+  categories: ICategory[] = [];
 
-  ngOnInit(): void {
-    this.loading = true;
-    this.categoryService.getCategories().subscribe((data) => {
-      this.loading = false;
-      this.categories = data;
+  constructor(private categoryService: CategoryService) {
+    this.newCategory = {} as ICategory;
+  }
+
+  ngOnInit() {
+    this.categoryService.getCategories().subscribe((categories) => {
+      this.categories = categories;
     });
   }
 }
