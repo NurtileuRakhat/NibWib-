@@ -9,6 +9,6 @@ class CustomUserAdmin(UserAdmin):
     model        = ModelUser
     fieldsets    = UserAdmin.fieldsets +(
         ("Extra",{
-            "fields":["avatar","address","isCustomer"]
+            "fields":["avatar","address"]
         }),
     )

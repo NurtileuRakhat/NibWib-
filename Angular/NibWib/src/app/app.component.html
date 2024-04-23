@@ -1,17 +1,27 @@
 <div class="body">
-  <div class="login" *ngIf="!is_logged">
+  <div class="login" *ngIf="!isLogged && !isRegister">
     <h1>HeadHunter</h1>
-    <h2>Please login!</h2>
+    <h2>Please login or register!</h2>
     <p>Username: <input type="text" [(ngModel)]="username" /></p>
-    <p>Password: <input type="password" [(ngModel)]="pswd" /></p>
+    <p>Password: <input type="password" [(ngModel)]="password" /></p>
     <button class="btn_in" (click)="login()">Login</button>
+    <button class="btn_reg" (click)="isRegister = true">Register</button>
+  </div>
+  <div class="register" *ngIf="isRegister">
+    <p>Username: <input type="text" [(ngModel)]="username" /></p>
+    <p>Password: <input type="password" [(ngModel)]="password" /></p>
+    <p>Password2: <input type="password" [(ngModel)]="password2" /></p>
+    <p>Email: <input type="email" [(ngModel)]="email" /></p>
+    <p>First Name: <input type="text" [(ngModel)]="first_name" /></p>
+    <p>Last Name: <input type="text" [(ngModel)]="last_name" /></p>
+    <button (click)="register()">Register</button>
   </div>
 </div>
 
-<div class="content" *ngIf="is_logged">
-  <button (click)="logout()">Выход</button>
+<div class="content" *ngIf="isLogged">
+  <button (click)="logout()">Logout</button>
 
   <div class="main">
     <router-outlet></router-outlet>
-  </div>
+  </div>  
 </div>
