@@ -4,5 +4,11 @@
     <h2>{{product.description}}</h2>
     <h1>price: {{product.price}}</h1>
     <a [routerLink]="['/categories', product.category.id]">{{product.category.name}}</a>
-  </div>
-  
+</div>
+
+<div *ngIf="product">
+  <h2>{{ product.name }}</h2>
+  <p>Price: {{ product.price }}</p>
+  <!-- <button (click)="addToCart(product.id)">Add One</button> -->
+
+</div>

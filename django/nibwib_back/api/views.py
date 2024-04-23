@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated, SAFE_METHODS, BasePermis
 from rest_framework import status
 from rest_framework.response import Response
 from .serializers import *
+from django.contrib.auth import get_user
 
 class ReadOnly(BasePermission):
     def has_permission(self, request, view):
@@ -11,8 +12,6 @@ class ReadOnly(BasePermission):
     
 class CategoryList(APIView):
     permission_classes = [IsAuthenticated|ReadOnly]
-
-    serializer_class = CategorySerializer
 
     def get(self, request):
         categories = Category.objects.all()
@@ -28,8 +27,6 @@ class CategoryList(APIView):
 
 class ProductList(APIView):
     permission_classes = [IsAuthenticated|ReadOnly]
-
-    serializer_class = ProductSerializer
 
     def get(self, request):
         products = Product.objects.all()
@@ -95,41 +92,3 @@ def get_product(request, product_id):
     elif request.method == 'DELETE':
         product.delete()
         return Response({'message': 'successfully deleted'}, status=status.HTTP_204_NO_CONTENT)
-
-
-class CartView(APIView):
-    permission_classes = [IsAuthenticated|ReadOnly]
-
-    def get(self, request):
-        if request.user.is_authenticated:
-            cart, created = Cart.objects.get_or_create(user=request.user)
-            serializer = CartSerializer(cart)
-            return Response(serializer.data,status=status.HTTP_200_OK)
-        else:
-            return Response({"error": "User is not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
-
-    def post(self, request):
-        if request.user.is_authenticated:
-            serializer = CartSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save(user=request.user)
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            return Response({"error": "User is not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
-
-
-class WishlistView(APIView):
-    permission_classes = [IsAuthenticated|ReadOnly]
-
-    def get(self, request):
-        wishlist, created = Wishlist.objects.get_or_create(user=request.user)
-        serializer = WishlistSerializer(wishlist)
-        return Response(serializer.data,status=status.HTTP_200_OK)
-
-    def post(self, request):
-        serializer = WishlistSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

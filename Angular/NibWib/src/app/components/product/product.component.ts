@@ -1,29 +1,43 @@
-import { Component,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../models/product';
 import { ProductService } from '../../service/product.service';
-import { RouterModule } from '@angular/router'; 
+import { RouterModule } from '@angular/router';
+import { CartService } from '../../service/cart.service';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrl: './product.component.css'
+  styleUrls: ['./product.component.css']
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
+  productId: number = 0;
   product: IProduct;
-  constructor( private route: ActivatedRoute, private service: ProductService) {
+
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService,
+    private cartService: CartService
+  ) {
     this.product = {} as IProduct;
   }
+
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      let strid = params.get('id');
-      if (strid) {
-        let id = +strid;
-        this.service.getProduct(id).subscribe((value) => {
-          console.log(value)
-          this.product = value;
-        })
-      }
-    });
+    const idParam = this.route.snapshot.paramMap.get('id');
+    if (idParam !== null) {
+      this.productId = +idParam;
+      this.getProduct();
+    }
   }
+
+  getProduct(): void {
+    this.productService.getProduct(this.productId)
+      .subscribe(product => this.product = product);
+  }
+
+  // addToCart(productId: number): void {
+  //   this.cartService.addToCart(productId)
+  //     .subscribe(() => console.log('Product added to cart')); // Handle success or display a message
+  // }
+  
 }

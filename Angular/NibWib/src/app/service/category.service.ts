@@ -29,4 +29,5 @@ export class CategoryService {
     getCategoryProducts(category_id: number): Observable<IProduct[]> {
         return this.http.get<IProduct[]>(`${this.URL}/categories/${category_id}/products`)
     }
+
 }

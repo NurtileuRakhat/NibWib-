@@ -1,10 +1,6 @@
 from rest_framework import serializers
 from .models import *
-
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = "__all__"
+from django.contrib.auth import get_user_model
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,17 +21,19 @@ class CategorySerializer(serializers.Serializer):
         instance.save()
         return instance
 
-class ReviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Review
-        fields = ['id', 'product', 'user', 'text', 'created_at']
 
-class CartSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Cart
-        fields = '__all__'
+# User = get_user_model()
 
-class WishlistSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Wishlist
-        fields = '__all__'
+
+# class Userserializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ('id', 'username', 'password',
+#                   'first_name', 'last_name', 'email',)
+#         extra_kwargs = {'password': {"write_only": True, 'required': True}}
+
+#     def create(self, validated_data):
+#         user = User.objects.create_user(**validated_data)
+#         Token.objects.create(user=user)
+#         return user
+
