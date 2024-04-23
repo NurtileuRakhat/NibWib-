@@ -7,7 +7,4 @@ export interface IProduct{
     price: number;
     image: string;
     category: ICategory;
-    is_available: boolean;
-    created_at: Date;
-    modified_at: Date;
 }
