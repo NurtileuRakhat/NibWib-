@@ -1,0 +1,89 @@
+.navigation {
+    background-color: #edb039;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    font-weight: 600;
+    color: #000;
+}
+
+.search-cart-fav-account {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%; 
+    justify-content: space-between;
+}
+
+.brand-name {
+    font-size: 30px;
+    font-family: Inter, sans-serif;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+}
+
+.search-input {
+    width: 50vw;
+    border-radius: 10px;
+    padding: 7px 15px;
+    margin-left: 10%;
+}
+
+
+.search-button {
+    background-color: #fff;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.icon-group {
+    display: flex;
+    gap: 20px; /* Adjust the gap between icon buttons */
+}
+
+img {
+    width: 30px;
+    height: 30px;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.icon-label {
+    font-size: 16px;
+}
+
+.search__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Added for vertical centering */
+    width: 50%; /* Added */
+}
+
+.search-results {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 15px;
+}
+
+li div {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
