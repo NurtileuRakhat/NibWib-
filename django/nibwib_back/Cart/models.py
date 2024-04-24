@@ -5,20 +5,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.db.models import Sum
-# class ModelCart(models.Model):
-#     user = models.ForeignKey(ModelUser,on_delete=models.CASCADE)
-
-    # def getTotalPrice(self):
-    #     totalPrice=0
-    #     prodcts=self.user.cart.first().items.all()
-    #     for product in prodcts:
-    #         totalPrice+=product.product.price
-    #     return totalPrice
-
-# class ModelCartItem(models.Model):
-#     cart = models.ForeignKey(ModelCart,on_delete=models.CASCADE)
-#     product = models.ForeignKey(Product,on_delete=models.CASCADE)
-#     amount = models.IntegerField()
 
 class Cart(models.Model):
     customer = models.ForeignKey(
@@ -44,17 +30,12 @@ class CartItem(models.Model):
 
 @receiver(post_save, sender=ModelUser)
 def get_cart_price(sender, **kwargs):
-    """Создает корзину пользователя при его аутентификации."""
     user = kwargs['instance']
-    cart = Cart.objects.create(customer=user)
-    cart.save()
-
+    if not Cart.objects.filter(customer=user).exists():
+        Cart.objects.create(customer=user)
+        
 @receiver([post_save, post_delete], sender=CartItem)
 def update_cart_total_price_and_count(sender, **kwargs):
-    """После добавления продуктов в корзину, изменения
-    их количества или удаления из корзины обновляет
-    общую стоимость и количество товаров в корзине.
-    """
     cart_item = kwargs['instance']
     cart = Cart.objects.get(id=cart_item.cart.id)
     result = CartItem.objects.filter(cart=cart).aggregate(
@@ -65,4 +46,3 @@ def update_cart_total_price_and_count(sender, **kwargs):
         cart.total_price = 0
         cart.total_count = 0
     cart.save() 
-

@@ -4,16 +4,12 @@ from api.serializers import ProductSerializer
 from rest_framework.exceptions import ValidationError
 
 class CartItemProductSerializer(serializers.ModelSerializer):
-    """
-    Формирует список товаров, находящихся к корзине, с указанием
-    количества и общей стоимости конкретного товара.
-    """
     product = serializers.SerializerMethodField()
 
     class Meta:
         model = CartItem
-        fields = ('product', 'count', 'price')
-
+        fields = "__all__"
+        
     def get_product(self, obj):
         return ProductSerializer(
             Product.objects.filter(
@@ -21,23 +17,17 @@ class CartItemProductSerializer(serializers.ModelSerializer):
             ), context=self.context, many=True
         ).data
 
-
-class CartItemSerializer(serializers.ModelSerializer):
-    cart = serializers.PrimaryKeyRelatedField(
-        queryset=Cart.objects.all(), required=False
-    )
-
-    class Meta:
-        model = CartItem
-        fields = ('cart', 'product', 'count', 'price')
+class CartItemSerializer(serializers.Serializer):
+    cart = serializers.PrimaryKeyRelatedField(queryset=Cart.objects.all(), required=False)
+    id = serializers.IntegerField(read_only=True)
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.all())
+    count = serializers.IntegerField()
+    price = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
 
     def validate(self, data):
-        if self.context.get('request').method == 'POST':
+        if self.context['request'].method == 'POST':
             if data.get('count') <= 0:
-                raise ValidationError(
-                    'Количество добавляемого в корзину '
-                    'товара не может быть меньше или равно 0'
-                )
+                raise ValidationError('Количество добавляемого в корзину товара не может быть меньше или равно 0')
         return data
 
     def create(self, validated_data):
@@ -53,29 +43,27 @@ class CartItemSerializer(serializers.ModelSerializer):
             return existing_item
         else:
             price = product.price * count
-            cart_item = CartItem.objects.create(
-                cart=cart, product=product, count=count, price=price
-            )
+            cart_item = CartItem.objects.create(cart=cart, product=product, count=count, price=price)
             return cart_item
-        
+
     def update(self, instance, validated_data):
         count = validated_data.get('count')
-        product = Product.objects.get(id=instance.product.id)
-        instance.count = count + instance.count
-        instance.price = product.price * instance.count
-        if instance.count <= 0:
+        product = instance.product
+        instance.count = count
+        instance.price = product.price * count
+        if count <= 0:
             instance.delete()
         else:
             instance.save()
         return instance
-
-
+    
+    
 class CartSerializer(serializers.ModelSerializer):
     products = serializers.SerializerMethodField()
 
     class Meta:
         model = Cart
-        fields = ('products', 'total_price', 'total_count')
+        fields = "__all__"
 
     def get_products(self, obj):
         return CartItemProductSerializer(

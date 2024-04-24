@@ -1,14 +1,18 @@
 <div>
-    <h1>{{product.name}}</h1>
-    <h1>Description:</h1>
-    <h2>{{product.description}}</h2>
-    <h1>price: {{product.price}}</h1>
-    <a [routerLink]="['/categories', product.category.id]">{{product.category.name}}</a>
+  <h2>{{ product.name }}</h2>
+  <p>{{ product.description }}</p>
+  <p>Price: {{ product.price }}</p>
+  <a [routerLink]="['/categories', product.category.id]">{{product.category.name}}</a>
+  <!-- <button (click)="addToCart(product.id)">Add One</button> -->
 </div>
-
+<!-- product-detail.component.html -->
 <div *ngIf="product">
   <h2>{{ product.name }}</h2>
-  <p>Price: {{ product.price }}</p>
-  <!-- <button (click)="addToCart(product.id)">Add One</button> -->
+  <p>{{ product.description }}</p>
+  <p>Цена: {{ product.price }}</p>
+  <button (click)="addToCart(product)">Добавить в корзину</button>
+</div>
 
+<div *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
 </div>

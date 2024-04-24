@@ -2,7 +2,7 @@ export interface AuthToken {
     access: string;
 };
 
-export interface SignUpToken {
+export interface Register {
     username: string;
     password: string;
     password2: string;

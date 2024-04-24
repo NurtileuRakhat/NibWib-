@@ -1,0 +1,23 @@
+<div *ngIf="!errorMessage">
+    <h2>Корзина</h2>
+    <div *ngIf="cart">
+      <div *ngIf="cart.products.length > 0; else emptyCart">
+        <div *ngFor="let item of cart.products">
+          <div>{{ item.product[0].name }} - {{ item.count }} шт.</div>
+          <div>Цена: {{ item.price }}</div>
+          <button (click)="deleteCartItem(item.id)">Удалить</button>
+          <input type="number" [(ngModel)]="item.count" (change)="updateCartItem(item.id,item.count)">
+        </div>
+      </div>
+      <ng-template #emptyCart>
+        <p>Ваша корзина пуста.</p>
+      </ng-template>
+      <div>Общая стоимость: {{ cart.total_price }}</div>
+      <div>Общая стоимость: {{ cart.total_count }}</div>      
+    </div>
+  </div>
+  
+  <div *ngIf="errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
+  

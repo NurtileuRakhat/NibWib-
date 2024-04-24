@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated, SAFE_METHODS, BasePermis
 from rest_framework import status
 from rest_framework.response import Response
 from .serializers import *
-from django.contrib.auth import get_user
+# from django.contrib.auth import get_user
 
 class ReadOnly(BasePermission):
     def has_permission(self, request, view):

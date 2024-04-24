@@ -10,7 +10,7 @@ import { AuthInterceptor } from './AuthInterceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
-
+import { CartComponent } from './cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +18,8 @@ import { HomeComponent } from './pages/home/home.component';
     CategoryComponent,
     ProductComponent,
     ProductsListComponent,
-    HomeComponent
+    HomeComponent,
+    CartComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

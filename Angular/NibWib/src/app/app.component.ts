@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from './service/category.service';
 import { AuthService } from './service/auth.service';
 
 @Component({
@@ -12,32 +11,50 @@ export class AppComponent implements OnInit {
   isLogged!: boolean;
   username!: string;
   password!: string;
-  password2: string = ''
+  password2: string = '';
   email!: string;
-  first_name!:string;
-  last_name!:string;
-  isRegister!: Boolean;
-  constructor(private authService: AuthService) {}
-  
+  first_name!: string;
+  last_name!: string;
+  isRegister!: boolean;
+  constructor(
+    private authService: AuthService,
+  ) {}
+
   ngOnInit(): void {
     this.isLogged = this.authService.isLoggedIn();
   }
 
   login(): void {
-    this.authService.login(this.username, this.password).subscribe((data) => {      
-      localStorage.setItem('token', data.access);
-      localStorage.setItem('username', this.username);
-      this.isLogged = true;
-    })
+    this.authService.login(this.username, this.password).subscribe({
+      next: (data) => {
+        localStorage.setItem('token', data.access);
+        this.isLogged = true;
+      },
+      error: (error) => {
+        alert('Login Failed.Invalid username or password.');
+      }
+    });
   }
 
   register(): void {
-    this.authService.register(this.username, this.password, this.password2, this.email, this.first_name, this.last_name).subscribe(() => {  
-      this.isLogged = true;
-      this.isRegister = false;
+    this.authService.register(
+      this.username,
+      this.password,
+      this.password2,
+      this.email,
+      this.first_name,
+      this.last_name
+    ).subscribe({
+      next: () => {
+        this.isLogged = true;
+        this.isRegister = false;
+      },
+      error: (error) => {
+        alert('Registration Failed. Please check your inputs and try again.');
+      }
     });
   }
-  
+
   logout() {
     this.isLogged = false;
     localStorage.removeItem('token');
