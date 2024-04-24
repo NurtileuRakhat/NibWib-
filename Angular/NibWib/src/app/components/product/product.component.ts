@@ -5,6 +5,7 @@ import { ProductService } from '../../service/product.service';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../../service/cart.service';
 import { AuthService } from '../../service/auth.service';
+import { FavoriteService } from '../../service/favorite.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -20,7 +21,9 @@ export class ProductComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private favoriteService: FavoriteService,
+
   ) {
     this.product = {} as IProduct;
   }
@@ -43,12 +46,10 @@ export class ProductComponent implements OnInit {
       .subscribe(
         (user_id) => {
           this.user_id = user_id;
-          // Предположим, что у вас есть свойство product_id в объекте IProduct
           this.cartService.addToCart(user_id, product)
             .subscribe(
               () => {
                 console.log('Product added to cart successfully.');
-                // Возможно, здесь вы хотите обновить данные о корзине
               },
               (error) => {
                 this.errorMessage = 'Failed to add product to cart: ' + error.message;
@@ -60,5 +61,27 @@ export class ProductComponent implements OnInit {
         }
       );
   }
+
+  addToFavorites(product: IProduct): void {
+    this.authService.getUserId()
+      .subscribe(
+        (user_id) => {
+          this.user_id = user_id;
+          this.favoriteService.addToFavorites(user_id, product.id) 
+            .subscribe(
+              () => {
+                console.log('Product added to favorites successfully.');
+              },
+              (error) => {
+                this.errorMessage = 'Failed to add product to favorites: ' + error.message;
+              }
+            );
+        },
+        (error) => {
+          this.errorMessage = 'Failed to get user ID: ' + error.message;
+        }
+      );
+  }
+  
   
 }

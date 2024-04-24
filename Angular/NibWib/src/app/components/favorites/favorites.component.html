@@ -1,0 +1,21 @@
+<div *ngIf="!errorMessage">
+    <h2>Favorite</h2>
+<div *ngIf="favorite">
+    <div *ngIf="favorite.products.length > 0; else emptyCart">
+    <div *ngFor="let item of favorite.products">
+        <div>{{ item.product[0].name }}</div>
+        <div>{{ item.product[0].description }}</div>
+        <div>{{ item.product[0].price }}</div>
+
+        <button (click)="removeFromFavorites(item.id)">Удалить</button>
+    </div>
+    </div>
+    <ng-template #emptyCart>
+    <p>Favorite is empty.</p>
+    </ng-template>
+</div>
+</div>
+
+<div *ngIf="errorMessage">
+<p>{{ errorMessage }}</p>
+</div>

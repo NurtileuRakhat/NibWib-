@@ -1,6 +1,31 @@
 <div>
   <a routerLink="/products">products</a><br>
   <a routerLink="/categories" >categories</a><br>
-  <a routerLink="/cart" >cart</a>
+  <a routerLink="/cart" >cart</a><br>
+  <a routerLink="/favorites" >favorites</a>
+
+<!-- search.component.html -->
+<!-- home.component.html -->
+
+<div class="container">
+  <h2>Search Products</h2>
+  <div class="search-form">
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Enter search query">
+    <button (click)="search()">Search</button>
+  </div>
+  <div *ngIf="searchResults$ | async as searchResults">
+    <h3>Search Results:</h3>
+    <ul>
+      <li *ngFor="let product of searchResults">
+        <div>
+          <strong>{{ product.name }}</strong>
+          <p>Description: {{ product.description }}</p>
+          <p>Price: {{ product.price }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>  
+</div>
+
 
 </div>

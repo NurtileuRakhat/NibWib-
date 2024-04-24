@@ -47,7 +47,8 @@ INSTALLED_APPS = [
 
     'api',
     'UserApp',
-    'Cart'
+    'Cart',
+    'Favorite'
 ]
 AUTH_USER_MODEL = 'UserApp.ModelUser'
 MIDDLEWARE = [
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'

@@ -5,7 +5,9 @@ import { CategoryComponent } from './components/category/category.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsListComponent } from './pages/products-list/products-list.component';
 import { HomeComponent } from './pages/home/home.component';
-import { CartComponent } from './cart/cart.component';
+import { CartComponent } from './components/cart/cart.component';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+
 const routes: Routes = [
   { path: '', component:  HomeComponent},
   { path: 'categories', component: CategoriesListComponent },
@@ -13,7 +15,7 @@ const routes: Routes = [
   { path: 'products/:id', component: ProductComponent },
   { path: 'products', component: ProductsListComponent },
   { path: 'cart', component: CartComponent },
-
+  { path: 'favorites', component: FavoritesComponent },
 ];
 
 @NgModule({

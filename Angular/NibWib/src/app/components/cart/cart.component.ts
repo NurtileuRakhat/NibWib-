@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../service/cart.service';
+import { CartService } from '../../service/cart.service';
 import { FormsModule } from '@angular/forms'; // Убедитесь, что это импорт
-import { Cart } from '../models/cart';
-import { AuthService } from '../service/auth.service';
+import { Cart } from '../../models/cart';
+import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -44,7 +44,7 @@ export class CartComponent implements OnInit {
       .subscribe(
         () => {
           this.getCartData();
-          this.errorMessage = ''; // Очищаем сообщение об ошибке в случае успешного выполнения операции
+          this.errorMessage = ''; 
         },
         (error) => {
           this.errorMessage = 'Ошибка при удалении товара из корзины: ' + error.message; 
@@ -57,7 +57,7 @@ export class CartComponent implements OnInit {
       .subscribe(
         () => {
           this.getCartData();
-          this.errorMessage = ''; // Очищаем сообщение об ошибке в случае успешного выполнения операции
+          this.errorMessage = ''; 
         },
         (error) => {
           this.errorMessage = 'Ошибка при обновлении товара в корзине: ' + error.message; 

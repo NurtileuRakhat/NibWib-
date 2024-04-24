@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated, SAFE_METHODS, BasePermis
 from rest_framework import status
 from rest_framework.response import Response
 from .serializers import *
+from django.db.models import Q
 # from django.contrib.auth import get_user
 
 class ReadOnly(BasePermission):
@@ -26,13 +27,17 @@ class CategoryList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProductList(APIView):
-    permission_classes = [IsAuthenticated|ReadOnly]
+    permission_classes = [IsAuthenticated | ReadOnly]
 
     def get(self, request):
-        products = Product.objects.all()
+        query = request.query_params.get('search')
+        if query:
+            products = Product.objects.filter(name__icontains=query)
+        else:
+            products = Product.objects.all()
         serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data,status=status.HTTP_200_OK)
-        
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def post(self, request, *args, **kwargs):
         serializer = ProductSerializer(data=request.data)
 

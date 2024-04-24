@@ -11,6 +11,7 @@
   <p>{{ product.description }}</p>
   <p>Цена: {{ product.price }}</p>
   <button (click)="addToCart(product)">Добавить в корзину</button>
+  <button (click)="addToFavorites(product)"> add To Favorites</button>
 </div>
 
 <div *ngIf="errorMessage">

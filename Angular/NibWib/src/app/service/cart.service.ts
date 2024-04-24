@@ -21,9 +21,9 @@
       addToCart(cartId: number, product: IProduct): Observable<CartItem> {
         const url = `${this.baseUrl}${cartId}/cart_item/`;
         const data = {
-          product: product.id, // Предполагается, что в объекте IProduct есть свойство id
-          count: 1, // В данном случае можно отправить статическое значение 1
-          cart: cartId // Идентификатор корзины
+          product: product.id, 
+          count: 1,
+          cart: cartId
         };
         return this.http.post<CartItem>(url, data);
       }
@@ -39,6 +39,7 @@
             })
           );
       }
+      
       deleteCartItem(cartId: number, itemId: number): Observable<any> {
         return this.http.delete<CartItem>(`${this.baseUrl}${cartId}/cart_item/${itemId}/`);
       }
