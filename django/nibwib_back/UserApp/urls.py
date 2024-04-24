@@ -7,4 +7,6 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),
     path('get_id/', get_user_id),
+    path('profile/', UserProfileRetrieveAPIView.as_view(), name='user-profile'),
+    path('profile/update/', UserProfileUpdateAPIView.as_view(), name='user-profile-update'),
 ]

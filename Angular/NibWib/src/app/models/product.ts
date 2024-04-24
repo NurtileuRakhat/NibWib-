@@ -7,4 +7,5 @@ export interface IProduct{
     price: number;
     image: string;
     category: ICategory;
+     products: any;
 }

@@ -1,13 +1,17 @@
 from rest_framework import serializers
-from UserApp.models import ModelUser,ModelAddress
-from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
+from rest_framework.validators import UniqueValidator
+from .models import ModelUser
 
+# class AddressSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = ModelAddress
+#         fields = ("unique_id", "name", "city", "street", "address")
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model  = ModelUser
-        fields = ("username","first_name","last_name")
+        model = ModelUser
+        fields = "__all__"
 
 class RegisterUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
@@ -48,8 +52,29 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 
         return user
 
+        
+class UpdateUserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(
+        required=False,
+        validators=[UniqueValidator(queryset=ModelUser.objects.all())]
+    )
 
-class AddressSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=False, validators=[validate_password])
+    password2 = serializers.CharField(write_only=True, required=False)
+
     class Meta:
-        model=ModelAddress
-        fields=("unique_id","name","city","street","address")
+        model = ModelUser
+        fields = ('username', 'password', 'password2', 'email', 'first_name', 'last_name', 'avatar')
+        extra_kwargs = {
+            'username': {'required': False},  
+            'first_name': {'required': True},
+            'last_name': {'required': True},
+            'avatar': {'required': False},
+        }
+        
+    def update(self, instance, validated_data):
+        for attr, value in validated_data.items():
+            if value and attr != 'password':
+                setattr(instance, attr, value)
+        instance.save()
+        return instance

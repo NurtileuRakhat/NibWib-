@@ -1,0 +1,68 @@
+/* styles.css (или в любом другом файле стилей вашего проекта) */
+
+.product-details {
+    display: flex;
+    max-width: 600px; /* Опционально: ограничиваем ширину для лучшего чтения */
+    margin: 0 auto; /* Центрируем по горизонтали */
+  }
+  
+  .product-image {
+    margin-right: 20px;
+  }
+  
+  .product-image img {
+    max-width: 200px;
+    height: auto;
+  }
+  
+  .product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .product-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .product-description {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .product-price {
+    font-size: 20px;
+    color: black;
+    margin-bottom: 15px;
+  }
+  
+  .buttons-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .add-to-cart-button,
+  .add-to-favorites-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #edb039;
+    color: black;
+    border: none;
+    border-radius: 10px; /* Добавляем радиус */
+    cursor: pointer;
+  }
+  
+  .add-to-cart-button:hover,
+  .add-to-favorites-button:hover {
+    background-color: #ff0000;
+  }
+  
+  .error-message {
+    color: #ff0000;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  

@@ -4,13 +4,17 @@ import { Observable } from 'rxjs';
 import { AuthToken } from '../models/authToken';
 import { ICategory } from '../models/category';
 import { IProduct } from '../models/product';
+import { BehaviorSubject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
     URL = 'http://127.0.0.1:8000/api';
     constructor(private http: HttpClient) {}
-
+    private selectedCategorySubject = new BehaviorSubject<ICategory | null>(null);
+    selectedCategory$ = this.selectedCategorySubject.asObservable();
+  
     login(username: string, password: string): Observable<AuthToken> {
         return this.http.post<AuthToken>(`${this.URL}/login/`, {
         username,
@@ -30,4 +34,7 @@ export class CategoryService {
         return this.http.get<IProduct[]>(`${this.URL}/categories/${category_id}/products`)
     }
 
+    toggleCategory(category: ICategory) {
+        this.selectedCategorySubject.next(category);
+      }
 }

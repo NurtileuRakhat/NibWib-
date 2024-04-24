@@ -1,34 +1,76 @@
 
 <app-header></app-header>
-<div class="body">
-  <div class="login" *ngIf="!isLogged && !isRegister">
-    <h1>NibWib</h1>
-    <h2>Please login or register!</h2>
-    <form name="loginForm" #loginForm="ngForm">
-      <p>Username: <input type="text" [(ngModel)]="username" name="username" required /></p>
-      <p>Password: <input type="password" [(ngModel)]="password" name="password" required /></p>
-      <button class="btn_in" (click)="login()">Login</button>
-      <button class="btn_reg" (click)="isRegister = true">Register</button>
-    </form>
-  </div>
-  <div class="register" *ngIf="isRegister">
-    <form name="registerForm" #registerForm="ngForm">
-      <p>Username: <input type="text" [(ngModel)]="username" name="username" required /></p>
-      <p>Password: <input type="password" [(ngModel)]="password" name="password" required /></p>
-      <p>Password2: <input type="password" [(ngModel)]="password2" name="password2" required /></p>
-      <p>Email: <input type="email" [(ngModel)]="email" name="email" required /></p>
-      <p>First Name: <input type="text" [(ngModel)]="first_name" name="first_name" required /></p>
-      <p>Last Name: <input type="text" [(ngModel)]="last_name" name="last_name" required /></p>
-      <button (click)="register()">Register</button>
-      <button (click)="isRegister = false">Cancel</button>
-    </form>
-  </div>
-</div>
+<body>
+  <div class="body" >
+    <section class="login-section"> 
+      <div class="login" *ngIf="!isLogged && !isRegister">
+        <div class="login__wrapper">
+          <form class= "login-form" name="loginForm" #loginForm="ngForm">
+            <h2>Sign in to your account </h2>
+            <div class="form__input">
+              <div class="input-group__log">
+                <label for="username" class="visually-hidden">Username</label>
+                <input type="text" [(ngModel)]="username" name="username" id="username" placeholder="Username" aria-label="Username" required /> 
+              </div>
+              <div class="input-group__log">
+                <label for="password" class="visually-hidden">Password</label>
+                <input type="password" [(ngModel)]="password" id="password" placeholder="Password" aria-label="Password" name="password" required />
+              </div>
+          </div>
+              <button class="btn_in" (click)="login()">Sign in</button>
+          </form>
+        </div>
+          <aside class="info">
+            <h2 class="welcome-back">Welcome back!</h2>
+            <p class="account-info">Don't have an account?</p>
+            <button class="btn_reg" (click)="isRegister = true">Register</button>
+          </aside>
+      </div>
+      </section>
+      
 
-<div class="content" *ngIf="isLogged">
-  <button (click)="logout()">Logout</button>
+      <div class="register" *ngIf="isRegister">
+        <form name="registerForm" #registerForm="ngForm">
+          <div class="input-group">
+            <label for="username" class="visually_hidden">Your username</label>
+            <input type="text" id="username" class="input-field" placeholder="Your username" aria-label="Your username" [(ngModel)]="username" name="username" required />
+          </div>
+          <div class="input-group-double">
+            <div class="input-group">
+              <label for="name" class="visually_hidden">Your name</label>
+              <input type="text" id="name" class="input-field" placeholder="Your name" aria-label="Your name" [(ngModel)]="first_name" name="first_name" required />
+            </div>
+            <div class="input-group">
+            <label for="surname" class="visually_hidden">Your surname</label>
+            <input type="text" id="surname" class="input-field" placeholder="Your surname" aria-label="Your surname"  [(ngModel)]="last_name" name="last_name" required/>
+          </div>
+          </div>
+          <div class="input-group">
+            <label for="email" class="visually_hidden">Your email</label>
+            <input type="email" id="email" class="input-field" placeholder="Your email" aria-label="Your email" [(ngModel)]="email" name="email" required />
+          </div>
+          <div class="input-group">
+            <label for="password" class="visually_hidden">Password</label>
+            <input type="password" id="password" class="input-field" placeholder="Password" aria-label="Password" [(ngModel)]="password" name="password" required/>
+          </div>
+          <div class="input-group">
+            <label for="passwordConfirm" class="visually_hidden">Password confirmation</label>
+            <input type="password" id="passwordConfirm" class="input-field" placeholder="Password confirmation" aria-label="Password confirmation" [(ngModel)]="password2" name="password2" required />
+          </div>
+          <div class="agreement-section">
+            <input type="checkbox" id="agreement" class="checkbox" />
+            <label for="agreement" class="agreement-text" required >I accept the terms of use & data privacy policy</label>
+          </div>
+          <button class="submit-button" (click)="register()">Join now</button>
+          <button class="cancel" (click)="isRegister = false">Cancel</button>
+        </form>
+      </div>
+  </div>
 
-  <div class="main">
-    <router-outlet></router-outlet>
-  </div>  
-</div>
+  <div class="content" *ngIf="isLogged">
+
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>  
+  </div>
+</body>

@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   searchQuery!: string;
   searchResults!: Observable<IProduct[]>;
-  showSearchResults: boolean = false; // Flag to control the visibility of search results
+  showSearchResults: boolean = false; 
 
   constructor(private router: Router, private productService: ProductService) { }
 
@@ -21,7 +21,7 @@ export class HeaderComponent {
       return;
     }
     this.searchResults = this.productService.searchProducts(this.searchQuery);
-    this.showSearchResults = true; // Show search results when searching
+    this.showSearchResults = true; 
   }
 
   navigateToProduct(productId: number) {

@@ -1,23 +1,31 @@
-<div *ngIf="!errorMessage">
-    <h2>Корзина</h2>
-    <div *ngIf="cart">
-      <div *ngIf="cart.products.length > 0; else emptyCart">
-        <div *ngFor="let item of cart.products">
-          <div>{{ item.product[0].name }} - {{ item.count }} шт.</div>
-          <div>Цена: {{ item.price }}</div>
-          <button (click)="deleteCartItem(item.id)">Удалить</button>
-          <input type="number" [(ngModel)]="item.count" (change)="updateCartItem(item.id,item.count)">
-        </div>
+<div class="cart-container">
+  <div class="cart-header">
+      <h2>Cart</h2>
+      <p *ngIf="cart.products.length === 0" class="empty-cart-msg">Your cart is empty.</p>
+  </div>
+  
+  <div class="cart-items" *ngIf="cart.products.length > 0">
+      <div *ngFor="let item of cart.products" class="cart-item">
+          <div class="item-info">
+              <div class="item-name">{{ item.product[0].name }}</div>
+              <div class="item-price">Price: {{ item.price }}</div>
+              <div class="item-count">Quantity: 
+                  <input type="number" [(ngModel)]="item.count" (change)="updateCartItem(item.id,item.count)">
+              </div>
+          </div>
+          <div class="item-actions">
+              <img class="item-image" src="{{item.product[0].image}}" alt="">
+              <button class="delete-btn" (click)="deleteCartItem(item.id)">Delete</button>
+          </div>
       </div>
-      <ng-template #emptyCart>
-        <p>Ваша корзина пуста.</p>
-      </ng-template>
-      <div>Общая стоимость: {{ cart.total_price }}</div>
-      <div>Общая стоимость: {{ cart.total_count }}</div>      
-    </div>
   </div>
   
-  <div *ngIf="errorMessage">
-    <p>{{ errorMessage }}</p>
+  <div class="cart-summary" *ngIf="cart.products.length > 0">
+      <div class="total-price">Total Price: {{ cart.total_price }}</div>
+      <div class="total-count">Total Quantity: {{ cart.total_count }}</div>
   </div>
-  
+</div>
+
+<div class="error-message" *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>

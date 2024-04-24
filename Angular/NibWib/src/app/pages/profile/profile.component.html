@@ -1,0 +1,12 @@
+<div class="profile-container" *ngIf="userProfile">
+    <h2>User Profile</h2>
+    <img src="{{ userProfile.avatar }}" alt="">
+    <p>Username: {{ userProfile.username }}</p>
+    <p>First Name: {{ userProfile.first_name }}</p>
+    <p>Last Name: {{ userProfile.last_name }}</p>
+    <p>Email: {{ userProfile.email }}</p>
+
+    <h3>Edit Profile</h3>
+    <button (click)="updateUserProfile()">Update Profile</button>
+    <button (click)="logout()">Logout</button>
+</div>

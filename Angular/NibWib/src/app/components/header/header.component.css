@@ -43,14 +43,12 @@
 
 .icon-group {
     display: flex;
-    gap: 20px; /* Adjust the gap between icon buttons */
+    gap: 20px; 
 }
 
-img {
-    width: 30px;
-    height: 30px;
+.fas{ 
+    font-size: 25px;
 }
-
 .icon-button {
     background: none;
     border: none;
@@ -65,8 +63,8 @@ img {
 .search__wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Added for vertical centering */
-    width: 50%; /* Added */
+    align-items: center;
+    width: 50%;
 }
 
 .search-results {

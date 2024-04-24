@@ -1,0 +1,81 @@
+/* Styling for the favorite section */
+.favorite-section {
+    margin: 20px 50px;
+    padding: 0 15%;
+    text-align: center;
+  }
+  
+  .favorite-section h2 {
+    font-size: 24px;
+  }
+  .favorite__wrapper{
+    margin: 0 5%;
+    padding: 0 5%;
+  }
+  
+  .item__pr{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .image{
+    margin: 10px;
+  }
+  .image img{
+    width: 100%;
+    height: 100%;
+  }
+
+  .favorite-item {
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .favorite-item .name {
+    font-weight: bold;
+  }
+  
+  .favorite-item .description {
+    margin-top: 5px;
+    color: #666;
+  }
+  
+  .favorite-item .price {
+    margin-top: 5px;
+    font-weight: bold;
+  }
+  
+  .favorite-item .image img {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .remove-button {
+    background-color: #edb039;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .remove-button:hover {
+    background-color: #cc4c3c;
+  }
+  
+  /* Styling for the empty cart message */
+  .empty-cart-message {
+    color: #999;
+    font-style: italic;
+  }
+  

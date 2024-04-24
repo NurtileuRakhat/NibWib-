@@ -1,0 +1,200 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .login-section {
+      margin: 5% 10%;   
+      height: 100%;
+    }
+
+
+    .login__wrapper{
+        display: flex;
+      height : 100%;
+      width: 500px;
+        background-color: #edb039;
+        text-align: center;
+        justify-content: center;
+    }
+     .login {
+      width: 100%;
+      height : 100%;
+      display: flex;
+      justify-content: space-around;
+     }
+     .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+  
+      }
+   
+     h2, .welcome-back {
+      font: 600 40px/1 'Montserrat Alternates', sans-serif;
+      color: #000;
+    }
+    .form__input{
+        display: flex;
+        flex-direction: column;
+    }
+    .input-group__log {
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+    .input-group__log input {
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-bottom: 5px;
+        width: 100%;
+        min-height: 10%;
+    }
+    .btn_in {
+      background-color: #4d9fff;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 12px 60px;
+      font-size: 20px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+  
+    .btn_reg {
+      background-color: #4d9fff;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 12px 60px;
+      font-size: 20px;
+      margin-top: 40px;
+      margin-left: 10px;
+      cursor: pointer;}
+
+    .info{
+      margin-left: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .account-info{
+      font-size: 20px;
+      margin-top: 45px;
+      font-family: sans-serif;
+    }
+    .visually-hidden {
+      position: absolute;
+      width:1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+    @media (max-width: 991px) {
+      .brand-header, .content, .btn_in, .sign-up-link {
+        padding: 20px;
+      }
+  }
+  .register{
+   
+  }
+  .register form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 1px;
+    width: 100%;
+    align-items: center;
+  }
+  @media (max-width: 991px) {
+    .registerForm {
+      margin-top: 10px;
+     
+    }
+  }
+  .input-group__log{
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+  }
+
+
+  /* Style for the registration form container */
+.register {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Style for input fields and labels */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    margin-bottom: 5px;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .input-group-double {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Style for agreement section */
+  .agreement-section {
+    margin-bottom: 15px;
+  }
+  
+  .agreement-text {
+    font-size: 14px;
+  }
+  
+  .checkbox {
+    margin-right: 10px;
+  }
+  
+  /* Style for buttons */
+  .submit-button,
+  .cancel {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .cancel {
+    background-color: #ccc;
+    color: #000;
+  }
+  
+  /* Hover effect for buttons */
+  .submit-button:hover,
+  .cancel:hover {
+    opacity: 0.8;
+  }
+  

@@ -13,7 +13,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { HeaderComponent } from './components/header/header.component';
-
+import { SliderComponent } from './components/slider/slider.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,9 @@ import { HeaderComponent } from './components/header/header.component';
     HomeComponent,
     CartComponent,
     FavoritesComponent,
-    HeaderComponent
+    HeaderComponent,
+    SliderComponent,
+    ProfileComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

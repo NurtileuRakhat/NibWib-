@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="slider">
+      <i class="fas fa-chevron-left" (click)="prevSlide()"></i>
+      <div class="slides-container">
+        <div class="slide" *ngFor="let image of images; let i = index" [class.active]="i === currentIndex" [style.transform]="'translateX(' + (i * -100) + '%)'">
+          <img [src]="image.url" alt="{{ image.alt }}">
+        </div>
+      </div>
+      <i class="fas fa-chevron-right" (click)="nextSlide()"></i>
+    </div>
+  
+    <aside class="fast-delivery-section">
+      <div class="delivery-info">
+        <div class="nibble-wibble">Nibble <br /> Wibble</div>
+      </div>
+      <i class="fas fa-running"></i>
+      <p class="delivery-text">Fast Delivery of Food</p>
+    </aside>
+  </div>
+  

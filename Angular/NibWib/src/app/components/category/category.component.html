@@ -1,13 +1,14 @@
-
-<div >
-  <h1>{{ category.name }}</h1>
-
-  <h1>Products of this Category</h1>
-
-  <ul>
-    <li *ngFor="let product of products">
-      <a [routerLink]="['/products', product.id]">{{product.name}}</a>
-    </li>
-  </ul>
+<div class="category-container" *ngIf="selectedCategory">
+  <div class="product-info">
+    <h1 class="category-title">{{ selectedCategory.name }}</h1>
+    <h2 class="section-title">Products of this Category:</h2>
+    <ul class="product-list">
+      <li *ngFor="let product of selectedCategory.products" class="product-item">
+        <a [routerLink]="['/products', product.id]" class="product-link">{{ product.name }}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="image-container">
+    <img class="category-image" src="http://127.0.0.1:8000/{{selectedCategory.image}}" alt="{{ selectedCategory.name }}">
+  </div>
 </div>
-

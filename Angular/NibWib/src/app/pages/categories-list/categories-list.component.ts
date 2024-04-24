@@ -13,14 +13,19 @@ export class CategoriesListComponent implements OnInit {
 
   newCategory: ICategory;
   categories: ICategory[] = [];
-
+  
   constructor(private categoryService: CategoryService) {
     this.newCategory = {} as ICategory;
   }
 
   ngOnInit() {
     this.categoryService.getCategories().subscribe((categories) => {
+      console.log(categories);
       this.categories = categories;
     });
+  }
+
+  toggleCategory(category: ICategory) {
+    this.categoryService.toggleCategory(category);
   }
 }

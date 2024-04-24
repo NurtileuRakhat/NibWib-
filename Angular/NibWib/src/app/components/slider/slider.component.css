@@ -1,0 +1,90 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+
+  .slider {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slides-container {
+    display: flex;
+    overflow-x: hidden;
+    width: 65%;
+    height: 65vh;
+    border-radius: 50px;
+  }
+  
+  .slide {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 100%;
+    opacity: 0; 
+    transition: opacity 0.5s ease;
+    overflow-y: hidden;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+
+  .slide.active {
+    opacity: 1;
+  }
+  
+  i {
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0 10px;
+    color: #333; 
+  }
+  
+  i:hover {
+    color: #555; 
+  }
+  
+  .fast-delivery-section {
+    display: flex;
+    margin-top: 37px;
+    background-color: #f9ba48;
+    border-radius: 47px;
+    padding: 25px 50px;
+    align-items: center;
+    height: 7vh;
+  }
+
+  .delivery-info {
+    display: flex;
+    font-size: 34px;
+    font-weight: 700;
+  }
+
+  .nibble-wibble {
+    font-family: Montserrat, sans-serif;
+  }
+
+  .delivery-icon {
+    width: 100px;
+  }
+
+  .delivery-text {
+    flex-grow: 1;
+    font: 600 24px Montserrat, sans-serif;
+  }
+
+  .fa-running {
+    font-size: 50px;
+  }
+  
+
+  

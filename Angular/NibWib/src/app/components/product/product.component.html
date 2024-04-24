@@ -1,19 +1,19 @@
-<div>
-  <h2>{{ product.name }}</h2>
-  <p>{{ product.description }}</p>
-  <p>Price: {{ product.price }}</p>
-  <a [routerLink]="['/categories', product.category.id]">{{product.category.name}}</a>
-  <!-- <button (click)="addToCart(product.id)">Add One</button> -->
-</div>
 <!-- product-detail.component.html -->
-<div *ngIf="product">
-  <h2>{{ product.name }}</h2>
-  <p>{{ product.description }}</p>
-  <p>Цена: {{ product.price }}</p>
-  <button (click)="addToCart(product)">Добавить в корзину</button>
-  <button (click)="addToFavorites(product)"> add To Favorites</button>
+<div class="product-details">
+  <div class="product-image">
+    <img src="http://127.0.0.1:8000/{{product.image}}" alt="Product Image">
+  </div>
+  <div class="product-info">
+    <h2 class="product-name">{{ product.name }}</h2>
+    <p class="product-description">{{ product.description }}</p>
+    <p class="product-price">Цена: {{ product.price }}</p>
+    <div class="buttons-container">
+      <button class="add-to-cart-button" (click)="addToCart(product)">Добавить в корзину</button>
+      <button class="add-to-favorites-button" (click)="addToFavorites(product)">Добавить в избранное</button>
+    </div>
+  </div>
 </div>
 
-<div *ngIf="errorMessage">
+<div *ngIf="errorMessage" class="error-message">
   <p>{{ errorMessage }}</p>
 </div>
