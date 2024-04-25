@@ -26,13 +26,14 @@ export class AuthService {
             catchError(error => throwError(() => error))
         );
     }
-    register(username: string, password: string, password2: string, email: string, first_name: string, last_name: string): Observable<Register> {
-        return this.httpClient.post<Register>(`${this.BASE_URL}/register/`, { username, password, password2, email, first_name, last_name })
-        .pipe(
-            catchError(error => throwError(() => error))
-        );
-    }
 
+    register(username: string, password: string, password2: string, email: string, first_name: string, last_name: string): Observable<Register> {
+      return this.httpClient.post<Register>(`${this.BASE_URL}/register/`, { username, password, password2, email, first_name, last_name })
+      .pipe(
+          catchError(error => throwError(() => error))
+      );
+  }
+  
     updateUser(userData: any): Observable<any> {
         return this.httpClient.put<any>(`${this.BASE_URL}/profile/update/`, userData);
       }

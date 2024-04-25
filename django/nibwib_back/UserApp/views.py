@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny,IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView, UpdateAPIView, CreateAPIView
@@ -30,7 +30,9 @@ def get_user_id(request):
 
 class RegisterUserView(CreateAPIView):
     queryset = ModelUser.objects.all()
+    permission_classes = [AllowAny]
     serializer_class = RegisterUserSerializer
+
 
 # class CreateAddressView(CreateAPIView):
 #     queryset = ModelAddress.objects.all()

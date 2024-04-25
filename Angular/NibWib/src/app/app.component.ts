@@ -50,6 +50,7 @@ export class AppComponent implements OnInit {
         this.isRegister = false;
       },
       error: (error) => {
+        console.log(error)
         alert('Registration Failed. Please check your inputs and try again.');
       }
     });
